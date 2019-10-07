@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  app:
+    build: 
+      context: ./app
+    ports:
+      - "8080:8080"
+    environment:
+      FLASK_APP: 'app.py:app'
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8082
+
